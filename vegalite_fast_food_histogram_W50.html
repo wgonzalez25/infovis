@@ -28,6 +28,12 @@ var vlSpec = {
           { "type" : "csv" }
     },
     "mark": {"type": "bar", "tooltip": {"content": "data"} },
+      "transform": [
+      {
+        "calculate": "'https://www.google.com/search?q=' + datum.chain",
+        "as": "url"
+      }
+    ],
     "encoding": {
       "x": {"aggregate": "sum", "field": "loc", "type": "quantitative", "title": "Locations"},
       "y": {"field": "chain", "type": "ordinal", "title": "Chain", "sort": "-x"},
