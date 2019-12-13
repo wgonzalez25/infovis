@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Vega Lite Fast Food US</title>
+ <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+  
+  
+</head>
+<body>
+   <h1>Rank of Chain by Location Numbers / Fast Food </h1>
+    <!-- Container for the visualization -->
+    <div id="vis"></div>
+
+    <script>
+      // Assign the specification to a local variable vlSpec.
+
+var vlSpec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "width": 700,
+    "height": 500,
+    "description": "A scatterplot showing locations and sales that opens a Google search for the car that you click on.",
+    "data": {
+          "url": "https://download.data.world/s/zdepjdaxjthd3vfuhtqq2fhabdsr42", "format" : 
+          { "type" : "csv" }
+    },
+    "mark": {"type": "bar", "tooltip": {"content": "data"} },
+    "encoding": {
+      "x": {"aggregate": "sum", "field": "loc", "type": "quantitative", "title": "Locations"},
+      "y": {"field": "chain", "type": "ordinal", "title": "Chain", "sort": "-x"},
+      "color": {"aggregate": "sum", "field": "sales", "type": "quantitative", "title": "Sales"},
+    }
+};
+      
+      // Embed the visualization in the container with id `vis`
+      vegaEmbed('#vis', vlSpec);
+    
+    </script>
+</body>
+</html>
